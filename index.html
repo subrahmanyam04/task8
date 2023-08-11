@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
+    <title>index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- slider cdn -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+   <!-- fontawesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    <script src="myjson.json"></script>  
+    
+
+    <body onload="getData('available')">
+
+      <div class="container-fluid  bg-dark p-3">
+        <ul class="nav nav-pills justify-content-left">
+          <li class="nav-item">
+            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true" onclick="getData('available')">Available</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false" onclick="getData('upcoming')">Upcoming</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false" onclick="getData('missed')">Missed</button>
+
+          </li>
+          </ul>
+      </div>
+
+        <div class="container-fluid mt-5">
+        <h1 class="text-center text-danger ">SA MART</h1>
+        <hr>
+        </div>
+        <div class="container-fluid mt-5">
+        <div id="products" class=" p-2"></div>
+        </div>
+
+
+
+<script>
+  // function getData(status){ 
+  //    var orignalData = JSON.parse(data);
+  //   //  var actualData = orignalData.filter(a=>{if(a.status==status)return a})
+  //   var actualData = orignalData.filter(ball=>(ball.status==status))    
+  //    var btn = (status == 'available' ? 'Buy' : (status == 'upcoming' ? 'Arriving Soon...' : 'unavailable..!'));
+  //    var add = '<div class="swiper mySwiper"><div class="swiper-wrapper ">'
+  //    for(let i=0; i<actualData.length; i++ )
+  //    {
+       
+  //      add += '<div class=" swiper-slide card map" style="width: 20rem;  float : left; margin:1px; text-align: left">'
+  //      add += '<img src="'+actualData[i].image+'" class="" alt="..." >'
+  //      add += '<div class="card-body">'
+  //      add += '<h5 class="card-title text-center fs-5">'+actualData[i].imagename+'</h5>'
+  //      add += '<p class="card-text box1 text-white fs-6 ">'+actualData[i].price+'</p>'
+  //      add += '<p class="card-text mt-2 mb-1 text-left fs-6" style="color:blue">'+actualData[i].actulprice+'</p>'
+  //      add += '<p class="card-text mb-1 text-left fs-6">'+actualData[i].ourprice+'</p>'
+  //     //  add += '<span class="card-text mb-1 text-left fs-6">'+actualData[i].Arrival+'</span>'
+  //             add +='<div class="mt-1 ">'
+  //       //       for(let j=0; j<5; j++)
+  //       //      {
+  //       //  let starValue =actualData[i].starratingValue*1 > j?" checked":''
+  //       //       add+=' <span class="fa fa-star'+starValue+'"></span>'
+  //       //      }
+           
+  //       const starRating = actualData[i].starratingValue;
+  //      const filledStar = '<span class="fa fa-star checked"></span> ';
+  //      const emptyStar = '<span class="fa fa-star"></span> ';
+  //       const starElements = filledStar.repeat(starRating )  + emptyStar.repeat( 5 - starRating);
+
+  //         add += starElements;
+  //             add+='</div>'
+  //              add += '<a href="#" class="btn btn-primary d-grid gap-2 col-12 mx-auto mt-2 p-1 shadow"><p class="card-text" style="color:white text-align: center">'+btn+'</p></a>'     
+  //      add += '</div>'
+  //      add += '</div>'     
+  //    }
+
+  // //    add += '</div>'
+  // //    add += '<div class="swiper-button-prev red-button"></div>'
+  // // add += '<div class="swiper-button-next"></div>'
+  // //    add += '</div>'
+      
+       
+  //    document.getElementById("products").innerHTML=add;
+  //    changeSwiper()
+  //    add+='</div>'
+  //    add+='</div>'
+     
+  //  } 
+
+
+
+
+
+
+
+                                // perfect map
+
+// function getData(status) {
+//   var originalData = JSON.parse(data);
+
+//   var btn = (status === 'available' ? 'Buy' : (status === 'upcoming' ? 'Arriving Soon...' : 'unavailable..!'));
+
+//   var add = '<div class="swiper mySwiper"><div class="swiper-wrapper ">';
+     
+//   add += originalData.map((item) => { 
+//     // console.log(item.status === statu); 
+//     if (item.status === status) {
+//       const starRating = item.starratingValue;
+//       const filledStar = '<span class="fa fa-star checked"></span> ';
+//       const emptyStar = '<span class="fa fa-star"></span> ';
+//       const starElements = filledStar.repeat(starRating) + emptyStar.repeat(5 - starRating);
+
+//       return `
+//         <div class="swiper-slide card map" style="width: 20rem; float: left; margin: 1px; text-align: left">
+//           <img src="${item.image}" class="" alt="...">
+//           <div class="card-body">
+//             <h5 class="card-title text-center fs-5">${item.imagename}</h5>
+//             <p class="card-text box1 text-white fs-6">${item.price}</p>
+//             <p class="card-text mt-2 mb-1 text-left fs-6" style="color: blue">${item.actulprice}</p>
+//             <p class="card-text mb-1 text-left fs-6">${item.ourprice}</p>
+//             <div class="mt-1">
+//               ${starElements}
+//             </div>
+//             <a href="#" class="btn btn-primary d-grid gap-2 col-12 mx-auto mt-2 p-1 shadow">
+//               <p class="card-text" style="color: white; text-align: center">${btn}</p>
+//             </a>
+           
+//           </div>
+//         </div>
+        
+//       `;
+//     }
+//     return '';
+//   }).join('');
+
+//   add += '</div></div>'; 
+//   // console.log(add)
+
+//   document.getElementById("products").innerHTML = add;
+//   changeSwiper();
+
+// }
+
+
+                                            // reduce method
+
+
+function getData(status) {
+  var originalData = JSON.parse(data);
+
+  var btn = (status === 'available' ? 'Buy' : (status === 'upcoming' ? 'Arriving Soon...' : 'unavailable..!'));
+  var add = '<div class="swiper mySwiper"><div class="swiper-wrapper ">';
+    
+  
+  add += originalData.reduce((out,item) => { 
+    //  console.table(item); 
+    if (item.status === status) {
+      const starRating = item.starratingValue;
+      const filledStar = '<span class="fa fa-star checked"></span> ';
+      const emptyStar = '<span class="fa fa-star"></span> ';
+      const starElements = filledStar.repeat(starRating) + emptyStar.repeat(5 - starRating);
+
+      out += `
+        <div class="swiper-slide card map" style="width: 20rem; float: left; margin: 1px; text-align: left">
+          <img src="${item.image}" class="" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center fs-5">${item.imagename}</h5>
+            <p class="card-text box1 text-white fs-6">${item.price}</p>
+            <p class="card-text mt-2 mb-1 text-left fs-6" style="color: blue">${item.actulprice}</p>
+            <p class="card-text mb-1 text-left fs-6">${item.ourprice}</p>
+            <div class="mt-1">
+              ${starElements}
+            </div>
+            <a href="#" class="btn btn-primary d-grid gap-2 col-12 mx-auto mt-2 p-1 shadow">
+              <p class="card-text" style="color: white; text-align: center">${btn}</p>
+            </a>
+           
+          </div>
+        </div>
+        
+      `;
+    }
+    return out;
+},'');
+  add += '</div></div>'; 
+  // console.log(add)
+
+  document.getElementById("products").innerHTML = add;
+  changeSwiper();
+
+}
+
+
+                                //using find 
+
+// function getData(status) {
+//   var originalData = JSON.parse(data);
+
+//   var btn = (status === 'available' ? 'Buy' : (status === 'upcoming' ? 'Arriving Soon...' : 'unavailable..!'));
+
+//   var add = '<div class="swiper mySwiper"><div class="swiper-wrapper ">';
+
+//   var item = originalData.find((item)=> item.status === status);
+  
+
+//   if (item) {
+//     const starRating = item.starratingValue;
+//     const filledStar = '<span class="fa fa-star checked"></span> ';
+//     const emptyStar = '<span class="fa fa-star"></span> ';
+//     const starElements = filledStar.repeat(starRating) + emptyStar.repeat(5 - starRating);
+
+//     add += `
+//       <div class="swiper-slide card map" style="width: 20rem; float: left; margin: 1px; text-align: left">
+//         <img src="${item.image}" class="" alt="...">
+//         <div class="card-body">
+//           <h5 class="card-title text-center fs-5">${item.imagename}</h5>
+//           <p class="card-text box1 text-white fs-6">${item.price}</p>
+//           <p class="card-text mt-2 mb-1 text-left fs-6" style="color: blue">${item.actulprice}</p>
+//           <p class="card-text mb-1 text-left fs-6">${item.ourprice}</p>
+//           <div class="mt-1">
+//             ${starElements}
+//           </div>
+//           <a href="#" class="btn btn-primary d-grid gap-2 col-12 mx-auto mt-2 p-1 shadow">
+//             <p class="card-text" style="color: white; text-align: center">${btn}</p>
+//           </a>
+//         </div>
+//       </div>
+//     `;
+//   }
+
+//   add += '</div></div>';
+
+//   document.getElementById("products").innerHTML = add;
+//   changeSwiper();
+// }
+  
+ </script>
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+            
+<script>
+    function changeSwiper() {
+      
+    var swiper = new Swiper(".mySwiper", {
+      
+      slidesPerView: 1,
+      spaceBetween: 10,
+      // pagination: {
+      //   page : ".swiper-pagination",
+      //   clickable: false,
+      // },
+      // navigation: {
+      //   nextEl: ".swiper-button-next",
+      //   prevEl: ".swiper-button-prev",
+      // },
+      breakpoints: {
+        640: {
+          slidesPerView: 2,
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 30,
+          
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 50,
+        },
+      },
+    });
+  }
+</script>
+
+
+
+
+</body>
+</html>
